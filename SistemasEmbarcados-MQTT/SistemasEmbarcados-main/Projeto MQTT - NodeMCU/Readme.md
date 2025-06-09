@@ -301,7 +301,3 @@ Vale lembrar que esses botões também ficam disponíveis na barra inferior do V
 # Contribuindo
 
 Alunos do 5° período de Sistemas de Informação da Unimater: Vinicius Caldato, Victor Hugo, William Almeida, Thiaogo Henrique
-
-<p align="center">
-  <img alt="Trio CCY" src="./Imagens/Trio CCY.jpg" width="600">
-</p>
