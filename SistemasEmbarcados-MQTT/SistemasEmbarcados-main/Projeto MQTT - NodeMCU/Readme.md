@@ -20,17 +20,16 @@
 
 # Visão Geral
 
-Este projeto demonstra a criação de um sistema simples de controle de iluminação utilizando o protocolo MQTT, através de um microcontrolador NodeMCU que atuará como publicador, e o broker Mosquitto para envio de comandos. Esses comandos serão responsáveis por controlar o estado de um LED, simulando um ambiente de automação residencial básico.
+Este projeto apresenta o desenvolvimento de um sistema básico de controle de iluminação utilizando o protocolo MQTT. Um microcontrolador NodeMCU será utilizado como publicador, enquanto o broker Mosquitto será responsável pelo envio dos comandos. Tais comandos controlarão o estado de um LED, simulando um cenário simples de automação residencial.
 
 # Estrutura de Pastas
 
-O código do projeto possui a seguinte estrutura de pastas:
-
+O código possui a seguinte estrutura
 ```
-├── 📁 .pio/                      ← Pasta interna usada para arquivos de build
-├── 📁 .vscode/                   ← Configurações específicas do VSCode
+├── 📁 .pio/                      ← Pasta usada para arquivos de build
+├── 📁 .vscode/                   ← Configurações do VSCode
 ├── 📁 include/                   ← Arquivos de cabeçalho
-├── 📁 lib/                       ← Bibliotecas locais específicas do projeto
+├── 📁 lib/                       ← Bibliotecas locais do projeto
 ├── 📁 src/                       ← Código-fonte principal
 │   └── 📂 main.cpp               ← Arquivo principal do projeto
 ├── 📁 test/                      ← Testes unitários
@@ -39,13 +38,13 @@ O código do projeto possui a seguinte estrutura de pastas:
 
 # Pré-requisitos
 
-  - Placa NodeMCU (ESP8266 V2 ou ESP8266 V3)
-  - Cabo Micro USB
-  - Mosquitto (Broker)
-  - MQTT Explorer
-  - Rede Wi-Fi
-  - Visual Studio Code
-  - Extensão PlatformIO do VS Code
+-Placa NodeMCU (ESP8266 V2 ou ESP8266 V3)
+-Cabo USB do tipo Micro USB
+-Broker Mosquitto
+-Aplicativo MQTT Explorer
+-Conexão Wi-Fi 
+-Visual Studio Code
+-PlatformIO instalada no VS Code
 
 # Instalação e Configuração
 
@@ -58,13 +57,13 @@ Para instalar os drivers da placa, primeiro é necessário identificar qual é a
   <img alt="NodeMCU V3" src="./Imagens/Versão Placa NodeMCU (V3).png" width="400">
 </p>
 
-Em seguida, basta acessar o site da Robo Core ([clique aqui](https://www.robocore.net/tutoriais/instalando-driver-do-nodemcu)) para baixar o driver de acordo com seu sistema operacional. Após o download, deve-se descompactar o arquivo e executar o arquivo .exe como administrador. Por fim, dependendo da versão da sua placa, será necessário clicar em **Next** até chegar na última página de instalação para finalizar clicando em **Finish** ou apenas pressionar o botão **Install**.
+Depois, acesse o site da Robo Core ([clique aqui](https://www.robocore.net/tutoriais/instalando-driver-do-nodemcu)) para realizar o download do driver compatível com o seu sistema operacional. Após concluir o download, descompacte o arquivo e execute o instalador (.exe) com privilégios de administrador. Por fim, dependendo da versão da sua placa, será necessário avançar pelas etapas da instalação clicando em Next até a última tela e finalizar em Finish, ou simplesmente pressionar o botão Install.
 
 ## PlatformIO
 
 ### Instalação
 
-Para baixar o PlatformIO será necessário abrir seu Visual Studio Code, por conseguinte, ir na aba **Extensões**, pesquisar por PlatformIO, clicar na extensão em questão e então em **Install**.
+Para instalar o PlatformIO, abra o Visual Studio Code, acesse a aba Extensões, pesquise por PlatformIO, selecione a extensão correspondente e clique em Install para concluir a instalação.
 
 <p align="center">
 <img alt="Instalação PlatformIO" src="./Imagens/PlatformIO (1).png" width="1000">
@@ -72,13 +71,13 @@ Para baixar o PlatformIO será necessário abrir seu Visual Studio Code, por con
 
 ### Criação do Projeto
 
-Para criar um projeto, depois de instalar a extensão, será apresentado um ícone na barra vertical a esquerda da tela, logo, você irá clicar nele, em seguida, em **Create New Project** e em **+ New Project**.
+Após instalar a extensão, um ícone será exibido na barra lateral esquerda do Visual Studio Code. Clique nesse ícone, depois em Create New Project e, em seguida, em + New Project para iniciar a criação do seu projeto.
 
 <p align="center">
 <img alt="Instalação PlatformIO" src="./Imagens/PlatformIO (2).png" width="1000">
 </p>
 
-Por último, é preciso preencher o nome do projeto, selecionar a placa **NodeMCU 1.0 (ESP-12E Module)** e clicar em **Finish**. Dessa forma, um novo projeto será criado.
+Por último, defina um nome para o projeto, selecione a placa NodeMCU 1.0 (ESP-12E Module) e clique em Finish. Assim, o projeto será gerado.
 
 <p align="center">
 <img alt="Instalação PlatformIO" src="./Imagens/PlatformIO (3).png" width="400">
@@ -86,7 +85,7 @@ Por último, é preciso preencher o nome do projeto, selecionar a placa **NodeMC
 
 ## Mosquitto (Broker MQTT)
 
-Para instalar o Mosquitto, você deve abrir a página do broker ([clique aqui](https://mosquitto.org/download/)) e selecionar o executável compatível com seu ambiente e arquitetura do computador (32 ou 64 bits). Caso seja Linux, pode-se baixar usando o snap (```snap install mosquitto```). Além disso, após a instalação, precisa-se ir no diretório onde o mesmo foi salvo, abrir o arquivo **mosquitto.conf** e adicionar o seguinte:
+Para instalar o Mosquitto, acesse a página oficial do broker [(CLIQUE AQUI)](https://mosquitto.org/download/)  e baixe o executável correspondente ao seu sistema operacional e à arquitetura do seu computador (32 ou 64 bits). No caso de sistemas Linux, a instalação pode ser realizada via snap com o comando snap install mosquitto. Após concluir a instalação, vá até o diretório onde o Mosquitto foi instalado, abra o arquivo **mosquitto.conf** e adicione as seguintes configurações:
 ```
 listener 1883 0.0.0.0
 allow_anonymous true
@@ -94,7 +93,7 @@ allow_anonymous true
 
 ### Liberação da porta 1883
 
-Para funcionamento da aplicação, é fundamental criar uma regra no firewall para liberar a porta 1883 TCP como entrada (para Linux não tem necessidade de fazer essa ação). Para a criação, tem de se abrir o **Windows Defender Firewall com Segurança Avançada**, clicar em **Regras de Entrada** e depois em **Nova Regra**.
+Para que a aplicação funcione corretamente, é essencial criar uma regra no firewall permitindo a entrada pela porta TCP 1883 (essa etapa não é necessária em sistemas Linux). Para criar a regra, abra o Windows Defender Firewall com Segurança Avançada, acesse Regras de Entrada e clique em Nova Regra.
 
 <p align="center">
 <img alt="Liberação da porta 1883" src="./Imagens/Regra de Entrada (1).png" width="1000">
@@ -132,13 +131,13 @@ Digitar um **Nome** para a regra e **Concluir**.
 
 ## MQTT Explorer (Cliente Gráfico)
 
-Para instalar o MQTT Explorer, é necessário abrir o site do produto ([clique aqui](https://mqtt-explorer.com/)), ir até a seção **Download** e instalar o programa conforme a plataforma da sua máquina. Adicionalmente, no seu projeto no arquivo **platformio.ini**, é essencial adicionar a dependência abaixo:
+Para instalar o MQTT Explorer, acesse o site oficial  ([clique aqui](https://mqtt-explorer.com/)), navegue até a área de Download e faça a instalação conforme o sistema operacional do seu computador. Além disso, no arquivo platformio.ini do seu projeto, é fundamental incluir a dependência abaixo:
 ```
 lib_deps =
  knolleary/PubSubClient
 ```
 
-Ademais, ao abrir o aplicativo, é obrigatório informar o **Host** como **127.0.0.1** ou **localhost**, a **Porta 1883** e pressionar o botão **Connect**. Caso queira, você pode alterar o nome da conexão no campo **Name**.
+Além disso, ao iniciar o aplicativo, é necessário configurar o Host como 127.0.0.1 ou localhost, definir a Porta 1883 e clicar em Connect. Se desejar, é possível modificar o nome da conexão no campo Name.
 
 <p align="center">
 <img alt="Instalação PlatformIO" src="./Imagens/MQTT Explorer.png" width="600">
@@ -146,11 +145,11 @@ Ademais, ao abrir o aplicativo, é obrigatório informar o **Host** como **127.0
 
 # Código Fonte
 
-O código desse projeto está na pasta **Sistemas Embarcados > Projeto MQTT - NodeMCU > src**.
+Os arquivos deste projeto encontram-se no diretório Sistemas Embarcados > Projeto MQTT - NodeMCU > src.
 
 ## Configurações Wi-Fi e MQTT
 
-Inicialmente, são feitas as importações das bibliotecas, definições das credenciais da rede Wi-Fi e das configurações do broker MQTT (IP, porta e tópicos de publicação e assinatura).
+No começo, realizam-se as importações das bibliotecas, a definição das credenciais da rede Wi-Fi e a configuração do broker MQTT, incluindo IP, porta e tópicos para publicação e assinatura.
 ```
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
@@ -188,7 +187,7 @@ void setup_wifi() {
 }
 ```
 
-A conexão com o broker MQTT é gerenciada pela função ```reconnect()```. Aqui o usuário vai ser comunicado que esta tentando conectar com o broker, se funcionou ou se ocorreu algum problema:
+A função reconnect() é responsável por gerenciar a conexão com o broker MQTT. Nela, o usuário recebe notificações informando que a tentativa de conexão está em andamento, se foi bem-sucedida ou se houve algum erro.
 ```
 void reconnect() {
   while (!client.connected()) {
@@ -214,7 +213,7 @@ void reconnect() {
 
 ## Callback e Controle do LED
 
-O controle do LED ocorre dentro da função ```callback()```, que é acionada sempre que o NodeMCU recebe uma mensagem no tópico ao qual ele está inscrito.
+A função callback() é responsável pelo controle do LED e é ativada sempre que o NodeMCU recebe uma mensagem no tópico em que está inscrito.
 ```
 void callback(char* topic, byte* payload, unsigned int length) {
   String msg;
@@ -261,25 +260,25 @@ casa/cômodo/led/status
 
 # Como Compilar e Carregar
 
-Para compilar e carregar, primeiramente você deve conectar a placa NodeMCU ao seu computador através de um cabo micro USB. Então, abra o projeto no Vs Code e, no canto superior direito da tela, pressione o botão para **buildar** [✅] que serve para compilar o código.
+Para compilar e enviar o código, conecte primeiro a placa NodeMCU ao computador usando um cabo micro USB. Em seguida, abra o projeto no VS Code e clique no botão de build [✅], localizado no canto superior direito, para compilar o programa.
 
 <p align="center">
 <img alt="Compilar e Carregar" src="./Imagens/Compilar e Carregar (1).png" width="400">
 </p>
 
-Posteriormente, selecione a opção para fazer o **upload** [➡️], enviando o programa para a placa. Nessa etapa, será detectado automaticamente em qual porta USB a placa está conectada em sua máquina.
+Depois, escolha a opção de upload [➡️] para enviar o programa à placa. Nesta etapa, a porta USB em que a placa está conectada será identificada automaticamente pelo sistema.
 
 <p align="center">
 <img alt="Compilar e Carregar" src="./Imagens/Compilar e Carregar (2).png" width="400">
 </p>
 
-Ao final, clique no botão com ícone de tomada (**Monitor Serial**) [🔌] para que a placa possa se comunicar com o computador. Dessa maneira, é possível acompanhar as mensagens de conexão.
+Por fim, clique no botão com o ícone de tomada (Monitor Serial) [🔌] para habilitar a comunicação entre a placa e o computador. Assim, você poderá acompanhar as mensagens referentes à conexão.
 
 <p align="center">
 <img alt="Compilar e Carregar" src="./Imagens/Compilar e Carregar (3).png" width="400">
 </p>
 
-Lembrando que esses botões também estão disponíveis na barra inferior do VS Code, e você pode utilizá-los para realizar cada uma das ações.
+Vale lembrar que esses botões também ficam disponíveis na barra inferior do VS Code, e podem ser usados para executar cada uma dessas ações.
 
 <p align="center">
 <img alt="Compilar e Carregar" src="./Imagens/Compilar e Carregar (4).png" width="1000">
@@ -301,7 +300,7 @@ Lembrando que esses botões também estão disponíveis na barra inferior do VS 
 
 # Contribuindo
 
-Alunos do 5° período de Sistemas de Informação da Unimater: Eduardo Giasson Correa, João Ricardo Criminácio e Yuri Schenkel. 
+Alunos do 5° período de Sistemas de Informação da Unimater: Vinicius Caldato, Victor Hugo, William Almeida, Thiaogo Henrique
 
 <p align="center">
   <img alt="Trio CCY" src="./Imagens/Trio CCY.jpg" width="600">
