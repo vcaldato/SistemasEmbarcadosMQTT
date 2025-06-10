@@ -302,11 +302,11 @@ Vale lembrar que esses botões também ficam disponíveis na barra inferior do V
 # Testes e Exemplos
 
 <p align="center">
-<img alt="Compilar e Carregar" src="./Imagens/Compilar e Carregar (4).png" width="1000">
+<img alt="Compilar e Carregar" src="./Imagens/led.png" width="1000">
 </p>
 
 <p align="center">
-<img alt="Compilar e Carregar" src="./Imagens/Compilar e Carregar (4).png" width="1000">
+<img alt="Compilar e Carregar" src="./Imagens/Not.png" width="1000">
 </p>
 
 # Estrutura de Tópicos por Cômodo
