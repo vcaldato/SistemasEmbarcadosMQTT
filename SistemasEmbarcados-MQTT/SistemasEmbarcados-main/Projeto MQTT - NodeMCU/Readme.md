@@ -290,31 +290,24 @@ casa/cômodo/led/status
 
 Para compilar e enviar o código, conecte primeiro a placa NodeMCU ao computador usando um cabo micro USB. Em seguida, abra o projeto no VS Code e clique no botão de build [✅], localizado no canto superior direito, para compilar o programa.
 
-<p align="center">
-<img alt="Compilar e Carregar" src="./Imagens/Compilar e Carregar (1).png" width="400">
-</p>
 
 Depois, escolha a opção de upload [➡️] para enviar o programa à placa. Nesta etapa, a porta USB em que a placa está conectada será identificada automaticamente pelo sistema.
 
-<p align="center">
-<img alt="Compilar e Carregar" src="./Imagens/Compilar e Carregar (2).png" width="400">
-</p>
-
 Por fim, clique no botão com o ícone de tomada (Monitor Serial) [🔌] para habilitar a comunicação entre a placa e o computador. Assim, você poderá acompanhar as mensagens referentes à conexão.
 
-<p align="center">
-<img alt="Compilar e Carregar" src="./Imagens/Compilar e Carregar (3).png" width="400">
-</p>
-
 Vale lembrar que esses botões também ficam disponíveis na barra inferior do VS Code, e podem ser usados para executar cada uma dessas ações.
+
+
+
+# Testes e Exemplos
 
 <p align="center">
 <img alt="Compilar e Carregar" src="./Imagens/Compilar e Carregar (4).png" width="1000">
 </p>
 
-# Testes e Exemplos
-
-
+<p align="center">
+<img alt="Compilar e Carregar" src="./Imagens/Compilar e Carregar (4).png" width="1000">
+</p>
 
 # Estrutura de Tópicos por Cômodo
 
@@ -328,4 +321,4 @@ Vale lembrar que esses botões também ficam disponíveis na barra inferior do V
 
 # Contribuindo
 
-Alunos do 5° período de Sistemas de Informação da Unimater: Vinicius Caldato, Victor Hugo, William Almeida, Thiaogo Henrique
+Alunos do 5° período de Sistemas de Informação da Unimater: Vinicius Caldato, Victor Hugo, William Linhares, Thiago Henrique
