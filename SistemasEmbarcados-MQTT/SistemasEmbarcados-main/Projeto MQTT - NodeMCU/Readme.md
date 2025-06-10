@@ -138,10 +138,6 @@ lib_deps =
 
 Além disso, ao iniciar o aplicativo, é necessário configurar o Host como 127.0.0.1 ou localhost, definir a Porta 1883 e clicar em Connect. Se desejar, é possível modificar o nome da conexão no campo Name.
 
-<p align="center">
-<img alt="Instalação PlatformIO" src="./Imagens/MQTT Explorer.png" width="600">
-</p>
-
 # Código Fonte
 
 Os arquivos deste projeto encontram-se no diretório Sistemas Embarcados > Projeto MQTT - NodeMCU > src.
@@ -149,7 +145,7 @@ Os arquivos deste projeto encontram-se no diretório Sistemas Embarcados > Proje
 ## Configurações Wi-Fi e MQTT
 
 No começo, realizam-se as importações das bibliotecas, a definição das credenciais da rede Wi-Fi e a configuração do broker MQTT, incluindo IP, porta e tópicos para publicação e assinatura.
-```
+```C++
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 
@@ -195,10 +191,10 @@ const int num_comodos = sizeof(led_pins) / sizeof(led_pins[0]);
 
 WiFiClient espClient;
 PubSubClient client(espClient);
-```
+``` 
 
 A função ```setup_wifi()``` conecta o NodeMCU à rede Wi-Fi:
-```
+```C++
 void setup_wifi() {
   Serial.print("Conectando na rede Wi-Fi: ");
   Serial.print(ssid);
@@ -216,7 +212,7 @@ void setup_wifi() {
 ```
 
 A função reconnect() é responsável por gerenciar a conexão com o broker MQTT. Nela, o usuário recebe notificações informando que a tentativa de conexão está em andamento, se foi bem-sucedida ou se houve algum erro.
-```
+```C++
 void reconnect() {
   while (!client.connected()) {
     String clientId = "NodeMCU-";
@@ -242,7 +238,7 @@ void reconnect() {
 ## Callback e Controle do LED
 
 A função callback() é responsável pelo controle do LED e é ativada sempre que o NodeMCU recebe uma mensagem no tópico em que está inscrito.
-```
+```C++
 void callback(char* topic, byte* payload, unsigned int length) {
   String msg;
   for (unsigned int i = 0; i < length; i++) {
@@ -276,7 +272,7 @@ No fim, o LED responde aos comandos **ON** para ligar e **OFF** para desligar e 
 
 ## Estrutura de Tópicos
 
-```
+```sh
 casa/cômodo/led/set
 casa/cômodo/led/status
 ```
@@ -302,11 +298,11 @@ Vale lembrar que esses botões também ficam disponíveis na barra inferior do V
 # Testes e Exemplos
 
 <p align="center">
-<img alt="Compilar e Carregar" src="./Imagens/led.png" width="1000">
+<img alt="Compilar e Carregar" src="./Imagens/led.jpg" width="1000">
 </p>
 
 <p align="center">
-<img alt="Compilar e Carregar" src="./Imagens/Not.png" width="1000">
+<img alt="Compilar e Carregar" src="./Imagens/Not.jpg" width="1000">
 </p>
 
 # Estrutura de Tópicos por Cômodo
