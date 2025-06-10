@@ -153,16 +153,45 @@ No começo, realizam-se as importações das bibliotecas, a definição das cred
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 
-const char* ssid = "ssid";
-const char* password = "senha";
-
-const char* mqtt_server = "ip";
+const char* ssid = "Prof.Rafael";
+const char* password = "senha123";
+const char* mqtt_server = "192.168.58.226";
 const int mqtt_port = 1883;
 
-const char* sub_topic = "casa/sala/led/set";
-const char* pub_topic = "casa/sala/led/status";
+// Define os pinos para cada cômodo
+#define LED_SALA    D0
+#define LED_COZINHA D1
+#define LED_QUARTO1 D2
+#define LED_QUARTO2 D3
+#define LED_VARANDA D4
 
-const uint8_t LED_PIN = D4;
+// Tópicos de controle e status
+const char* sub_topics[] = {
+  "casa/sala/led/set",
+  "casa/cozinha/led/set",
+  "casa/quarto1/led/set",
+  "casa/quarto2/led/set",
+  "casa/varanda/led/set"
+};
+
+const char* pub_topics[] = {
+  "casa/sala/led/status",
+  "casa/cozinha/led/status",
+  "casa/quarto1/led/status",
+  "casa/quarto2/led/status",
+  "casa/varanda/led/status"
+};
+
+// Correspondência dos LEDs com os tópicos
+const uint8_t led_pins[] = {
+  LED_SALA,
+  LED_COZINHA,
+  LED_QUARTO1,
+  LED_QUARTO2,
+  LED_VARANDA
+};
+
+const int num_comodos = sizeof(led_pins) / sizeof(led_pins[0]);
 
 WiFiClient espClient;
 PubSubClient client(espClient);
